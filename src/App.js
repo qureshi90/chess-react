@@ -6,7 +6,6 @@ function App() {
   return (
     <div className="App">
       <Board />
-      <img src="./assets/pieces/Chess_bdt45.svg" alt=""/>
     </div>
   );
 }
