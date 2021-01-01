@@ -1,10 +1,9 @@
 import React from "react";
-import pieces from './pieces';
+import arr from './pieces';
 
 function Board() {
   return (
     <>
-      <img src={pieces.rb} alt="rook black" />
       <table border="1" cellSpacing="0">
         <tbody className="board">
           {Array.from({ length: 8 }).map((_, rowId) => (
@@ -21,7 +20,8 @@ function Board() {
                       : "table-cell"
                   }
                 >
-                  <img src={pieces.pw} alt="piece" />
+                  { [0, 1, 6, 7].includes(rowId) ? <img src={arr[rowId][colId]} alt="piece" /> : "" }
+                  
                 </td>
               ))}
             </tr>

@@ -1,5 +1,5 @@
 
-const pieces = {
+const p = {
   pw: "https://upload.wikimedia.org/wikipedia/commons/4/45/Chess_plt45.svg", // pawn white
   pb: "https://upload.wikimedia.org/wikipedia/commons/c/c7/Chess_pdt45.svg", // pawn black
   bw: "https://upload.wikimedia.org/wikipedia/commons/b/b1/Chess_blt45.svg", // bishop white
@@ -15,14 +15,14 @@ const pieces = {
 }
 
 const arr = [
+  [p.rb,p.nb,p.bb,p.qb,p.kb,p.bb,p.nb,p.rb],
+  [p.pb,p.pb,p.pb,p.pb,p.pb,p.pb,p.pb,p.pb],
   ["","","","","","","",""],
   ["","","","","","","",""],
   ["","","","","","","",""],
   ["","","","","","","",""],
-  ["","","","","","","",""],
-  ["","","","","","","",""],
-  ["","","","","","","",""],
-  ["","","","","","","",""]
+  [p.pw,p.pw,p.pw,p.pw,p.pw,p.pw,p.pw,p.pw],
+  [p.rw,p.nw,p.bw,p.qw,p.kw,p.bw,p.nw,p.rw]
 ]
 
-export default pieces;
+export default arr;
