@@ -17,10 +17,10 @@ const p = {
 const arr = [
   [p.rb,p.nb,p.bb,p.qb,p.kb,p.bb,p.nb,p.rb],
   [p.pb,p.pb,p.pb,p.pb,p.pb,p.pb,p.pb,p.pb],
-  ["","","","","","","",""],
-  ["","","","","","","",""],
-  ["","","","","","","",""],
-  ["","","","","","","",""],
+  [],
+  [],
+  [], 
+  [],
   [p.pw,p.pw,p.pw,p.pw,p.pw,p.pw,p.pw,p.pw],
   [p.rw,p.nw,p.bw,p.qw,p.kw,p.bw,p.nw,p.rw]
 ]

@@ -20,8 +20,7 @@ function Board() {
                       : "table-cell"
                   }
                 >
-                  { [0, 1, 6, 7].includes(rowId) ? <img src={arr[rowId][colId]} alt="piece" /> : "" }
-                  
+                  { ( arr[rowId][colId] !== undefined ) ? <img src={arr[rowId][colId]} alt="piece" /> : null }
                 </td>
               ))}
             </tr>
