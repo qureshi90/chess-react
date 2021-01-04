@@ -1,49 +1,36 @@
-import React from "react";
-import arr from './pieces';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-// import Knight from '../pieces/knight';
-// import Square from './square.js';
+import React from 'react';
+import '../index.css';
+import Square from './square.js';
 
-function Board() {
-  return (
-    // <>
-    //   <Square black>
-    //     <Knight />
-    //   </Square>
-    // </>
+export default class Board extends React.Component {
 
-    <>
-      <DragDropContext>
-      
-        <table border="1" cellSpacing="0">
-          <tbody className="board">
-            {Array.from({ length: 8 }).map((_, rowId) => (
-              <tr key={rowId}>
-                {Array.from({ length: 8 }).map((_, colId) => (
-                  
-                  <td
-                    key={colId}
-                    className={rowId % 2 === 1
-                      ? colId % 2 === 0
-                        ? "cell-color table-cell"
-                        : "table-cell"
-                      : colId % 2 === 1
-                        ? "cell-color table-cell"
-                        : "table-cell"
-                    }
-                  >
-                    { ( arr[rowId][colId] !== undefined ) ? <img src={arr[rowId][colId]} alt="piece" /> : null }
-                  </td>
-                  
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        
-      </DragDropContext>
-    </>
-  );
+  renderSquare(i, squareShade) {
+    return <Square 
+    piece = {this.props.squares[i]} 
+    style = {this.props.squares[i] ? this.props.squares[i].style : null}
+    shade = {squareShade}
+    />
+  }
+
+  render() {
+    const board = [];
+    for(let i = 0; i < 8; i++){
+      const squareRows = [];
+      for(let j = 0; j < 8; j++){
+        const squareShade = (isEven(i) && isEven(j)) || (!isEven(i) && !isEven(j))? "light-square" : "dark-square";
+        squareRows.push(this.renderSquare((i*8) + j, squareShade));
+      }
+      board.push(<div className="board-row">{squareRows}</div>)
+    }
+
+    return (
+      <div>
+        {board}
+      </div>
+    );
+  }
 }
 
-export default Board;
+function isEven(num){
+  return num % 2 === 0
+}

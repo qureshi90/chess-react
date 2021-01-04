@@ -1,15 +1,27 @@
 import React from 'react';
-import './App.css';
-import Board from './components/board';
-//import AppDragDropDemo from './test';
+import './index.css';
+import Board from './components/board.js';
+import initialiseChessBoard from './helpers/board-initializer.js';
 
-function App() {
-  return (
-    <div className="App">
-      <Board />
-      {/* <Board knightPosition={[0, 0]} /> */}
-    </div>
-  );
+export default class App extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      squares: initialiseChessBoard(),
+      player: 1,
+    }
+  }
+  render() {
+    return (
+      <div>
+        <div className="game">
+          <div className="game-board">
+            <Board 
+            squares = {this.state.squares}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
-
-export default App;

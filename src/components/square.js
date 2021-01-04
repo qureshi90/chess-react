@@ -1,22 +1,14 @@
-import React from 'react'
+import React from 'react';
+import '../index.css';
 
-function Square({ black, children }) {
-
-  const fill = black ? 'black' : 'white'
-  // const stroke = black ? 'white' : 'black'
-
+function Square(props) {
   return (
-    <div 
-      style={{
-        backgroundColor: fill,
-        // color: stroke,
-        width: '100%',
-        height: '100vh'
-      }}
-    >
-      {children}
-    </div>
-  )
+    <button className={"square " + props.shade}
+    onClick={props.onClick}
+    style={props.style}>
+    </button>
+  );
 }
 
 export default Square;
+
