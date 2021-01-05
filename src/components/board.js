@@ -4,11 +4,19 @@ import Square from './square.js';
 
 export default class Board extends React.Component {
 
+  makeMove = () => {
+    let square = this.state.squares;
+    square[17] = square[1];
+    square[1] = null;
+    console.log('clicked');
+  }
+
   renderSquare(i, squareShade) {
     return <Square 
     piece = {this.props.squares[i]} 
     style = {this.props.squares[i] ? this.props.squares[i].style : null}
     shade = {squareShade}
+    onClick = {this.makeMove}
     />
   }
 
@@ -24,8 +32,8 @@ export default class Board extends React.Component {
     }
 
     return (
-      <div>
-        {board}
+      <div onClick = {this.makeMove}>
+        {board }
       </div>
     );
   }
