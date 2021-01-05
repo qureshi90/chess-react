@@ -1,44 +1,57 @@
 import React from 'react';
 import '../index.css';
 import Square from './square.js';
+import _ from 'lodash';
 
 export default class Board extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = { squares: props.squares };
+  }
+
   makeMove = () => {
-    let square = this.state.squares;
-    square[17] = square[1];
-    square[1] = null;
-    console.log('clicked');
+    let squares = _.cloneDeep(this.state.squares);
+    const sourceIndex = 1;
+    const destinationIndex = 17;
+
+    squares[destinationIndex] = squares[sourceIndex];
+    squares[sourceIndex] = null;
+    this.setState({ squares: squares })
   }
 
   renderSquare(i, squareShade) {
-    return <Square 
-    piece = {this.props.squares[i]} 
-    style = {this.props.squares[i] ? this.props.squares[i].style : null}
-    shade = {squareShade}
-    onClick = {this.makeMove}
+    const { squares } = this.state;
+
+    return <Square
+      key={i}
+      piece={squares[i]}
+      style={squares[i] ? squares[i].style : null}
+      shade={squareShade}
+      clickHandler={this.makeMove}
     />
   }
 
   render() {
     const board = [];
-    for(let i = 0; i < 8; i++){
+    for (let i = 0; i < 8; i++) {
       const squareRows = [];
-      for(let j = 0; j < 8; j++){
-        const squareShade = (isEven(i) && isEven(j)) || (!isEven(i) && !isEven(j))? "light-square" : "dark-square";
-        squareRows.push(this.renderSquare((i*8) + j, squareShade));
+      for (let j = 0; j < 8; j++) {
+        const squareShade = (isEven(i) && isEven(j)) || (!isEven(i) && !isEven(j)) ? "light-square" : "dark-square";
+        squareRows.push(this.renderSquare((i * 8) + j, squareShade));
       }
-      board.push(<div className="board-row">{squareRows}</div>)
+      board.push(<div className="board-row" key={i}>{squareRows}</div>)
     }
 
     return (
-      <div onClick = {this.makeMove}>
-        {board }
+      <div>
+        {board}
       </div>
     );
   }
 }
 
-function isEven(num){
+function isEven(num) {
   return num % 2 === 0
 }
