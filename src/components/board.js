@@ -1,15 +1,14 @@
 import React from 'react';
 import '../index.css';
 import Square from './square.js';
-import _ from 'lodash';
+//import _ from 'lodash';
 
 export default class Board extends React.Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = { squares: props.squares };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = { squares: props.squares };
+  // }
 
   // makeMove = () => {
   //   let squares = _.cloneDeep(this.state.squares);
@@ -23,12 +22,12 @@ export default class Board extends React.Component {
   // }
 
   renderSquare(i, squareShade) {
-    const { squares } = this.state;
+    //const { squares } = this.state;
 
     return <Square
       key={i}
-      piece={squares[i]}
-      style={squares[i] ? squares[i].style : null}
+      piece={this.props.squares[i]}
+      style={this.props.squares[i] ? this.props.squares[i].style : null}
       shade={squareShade}
       // onClick = {(i) => this.makeMove(i)}
       // clickHandler={this.makeMove}
