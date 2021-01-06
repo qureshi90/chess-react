@@ -11,15 +11,16 @@ export default class Board extends React.Component {
     this.state = { squares: props.squares };
   }
 
-  makeMove = () => {
-    let squares = _.cloneDeep(this.state.squares);
-    const sourceIndex = 1;
-    const destinationIndex = 17;
+  // makeMove = () => {
+  //   let squares = _.cloneDeep(this.state.squares);
+  //   //const sourceIndex = 1;
+  //   //const destinationIndex = 17;
 
-    squares[destinationIndex] = squares[sourceIndex];
-    squares[sourceIndex] = null;
-    this.setState({ squares: squares })
-  }
+  //   //squares[destinationIndex] = squares[sourceIndex];
+  //   //squares[sourceIndex] = null;
+  //   this.setState({ squares: squares });
+  //   console.log(squares);
+  // }
 
   renderSquare(i, squareShade) {
     const { squares } = this.state;
@@ -29,7 +30,10 @@ export default class Board extends React.Component {
       piece={squares[i]}
       style={squares[i] ? squares[i].style : null}
       shade={squareShade}
-      clickHandler={this.makeMove}
+      // onClick = {(i) => this.makeMove(i)}
+      // clickHandler={this.makeMove}
+      onClick={() => this.props.onClick(i)}
+      
     />
   }
 

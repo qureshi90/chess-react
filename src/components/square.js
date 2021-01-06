@@ -6,7 +6,8 @@ function Square(props) {
     <button
       className={"square " + props.shade}
       style={props.style}
-      onClick={props.clickHandler}
+      onClick={props.onClick}
+      // onClick={props.clickHandler}
     />
   );
 }

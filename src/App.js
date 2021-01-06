@@ -11,6 +11,12 @@ export default class App extends React.Component {
       player: 1,
     }
   }
+
+  handleClick(i) {
+    const squares = this.state.squares.slice();
+    console.log(squares[i], i);
+  }
+
   render() {
     return (
       <div>
@@ -18,6 +24,7 @@ export default class App extends React.Component {
           <div className="game-board">
             <Board 
             squares = {this.state.squares}
+            onClick = {(i) => this.handleClick(i)}
             />
           </div>
         </div>
