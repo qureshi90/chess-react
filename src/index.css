@@ -40,8 +40,9 @@ body {
 
 .game-info {
   margin-left: 20px;
+  width: 150px;
 }
 
 .game-status {
-  max-width: 130px;
+  max-width: 140px;
 }

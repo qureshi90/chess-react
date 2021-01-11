@@ -27,8 +27,8 @@ export default class App extends React.Component {
       else {
         //const item = this.state.squares[i];
         //console.log(item, i);
-        console.log(squares[i], i);
-        console.log(this.state.sourceSelection);
+        //console.log(squares[i], i);
+        //console.log(this.state.sourceSelection);
 
         // console.log(squares[i].player);
         // console.log(this.state.player);
@@ -54,23 +54,24 @@ export default class App extends React.Component {
         });
       }
 
-      else{
-      this.setState({sourceSelection: -1});
-      squares[i] = squares[this.state.sourceSelection];
-      squares[this.state.sourceSelection] = null;
+      else {
+        //this.setState({sourceSelection: -1});
+        squares[i] = squares[this.state.sourceSelection];
+        squares[this.state.sourceSelection] = null;
 
-      let turn = this.state.turn === 'white' ? 'black' : 'white';
-      let player = this.state.player === 1 ? 2 : 1;
+        let turn = this.state.turn === 'white' ? 'black' : 'white';
+        let player = this.state.player === 1 ? 2 : 1;
 
-      this.setState({ 
-        squares: squares,
-        turn: turn,
-        status: '',
-        player: player
-      });
-      
-      console.log(squares);
-      console.log(turn);
+        this.setState({ 
+          squares: squares,
+          turn: turn,
+          status: '',
+          player: player,
+          sourceSelection: -1
+        });
+        
+        //console.log(squares);
+        //console.log(turn);
       }
 
       // console.log(squares[i].player);
