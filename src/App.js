@@ -10,7 +10,9 @@ export default class App extends React.Component {
     this.state = {
       squares: initialiseChessBoard(),
       player: 1,
-      sourceSelection: -1
+      sourceSelection: -1,
+      turn: 'white',
+      status: ''
     }
   }
 
@@ -19,14 +21,22 @@ export default class App extends React.Component {
     //let squares = _.cloneDeep(this.state.squares);
 
     if(this.state.sourceSelection === -1) {
-      //const item = this.state.squares[i];
-      console.log(squares[i], i);
-      //console.log(item, i);
-      console.log(this.state.sourceSelection);
-      this.setState({sourceSelection: i});
+      if(!squares[i] || squares[i].player !== this.state.player){
+        this.setState({status: "Wrong selection. Choose " + this.state.turn + " pieces."});
+      }
+      else {
+        //const item = this.state.squares[i];
+        //console.log(item, i);
+        console.log(squares[i], i);
+        console.log(this.state.sourceSelection);
+        this.setState({
+          sourceSelection: i,
+          status: 'choose destination for selected piece'
+        });
+      }
     }
     
-    else if (this.state.sourceSelection > -1) {
+    else if(this.state.sourceSelection > -1) {
       // console.log(i);
       // console.log(this.state.squares[i]);
       // console.log(this.state.sourceSelection);
@@ -35,8 +45,18 @@ export default class App extends React.Component {
       this.setState({sourceSelection: -1});
       squares[i] = squares[this.state.sourceSelection];
       squares[this.state.sourceSelection] = null;
-      this.setState({ squares: squares });
+
+      let turn = this.state.turn === 'white' ? 'black' : 'white';
+      let player = this.state.player === 1 ? 2 : 1;
+
+      this.setState({ 
+        squares: squares,
+        turn: turn,
+        status: '',
+        player: player
+      });
       console.log(squares);
+      console.log(turn);
 
 
       // const sourceIndex = 1;
@@ -59,6 +79,13 @@ export default class App extends React.Component {
               onClick = {(i) => this.handleClick(i)}
             />
           </div>
+
+          <div className="game-info">
+            <h3>Turn</h3>
+            <div id="player-turn-box" style={{backgroundColor: this.state.turn}}></div>
+            <div className="game-status">{this.state.status}</div>
+          </div>
+
         </div>
       </div>
     );
