@@ -29,6 +29,10 @@ export default class App extends React.Component {
         //console.log(item, i);
         console.log(squares[i], i);
         console.log(this.state.sourceSelection);
+
+        // console.log(squares[i].player);
+        // console.log(this.state.player);
+
         this.setState({
           sourceSelection: i,
           status: 'choose destination for selected piece'
@@ -41,7 +45,16 @@ export default class App extends React.Component {
       // console.log(this.state.squares[i]);
       // console.log(this.state.sourceSelection);
       // console.log(squares[this.state.sourceSelection]);
+      //if(squares[i].player === this.state.player);
 
+      if(squares[i] && squares[i].player === this.state.player){
+        this.setState({
+          status: "choose destination for selected piece",
+          sourceSelection: i,
+        });
+      }
+
+      else{
       this.setState({sourceSelection: -1});
       squares[i] = squares[this.state.sourceSelection];
       squares[this.state.sourceSelection] = null;
@@ -55,8 +68,13 @@ export default class App extends React.Component {
         status: '',
         player: player
       });
+      
       console.log(squares);
       console.log(turn);
+      }
+
+      // console.log(squares[i].player);
+      // console.log(this.state.player);
 
 
       // const sourceIndex = 1;
