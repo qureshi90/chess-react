@@ -2,7 +2,6 @@ import React from 'react';
 import './index.css';
 import Board from './components/board.js';
 import initialiseChessBoard from './helpers/board-initializer.js';
-//import _ from 'lodash';
 
 export default class App extends React.Component {
   constructor(){
@@ -18,21 +17,12 @@ export default class App extends React.Component {
 
   handleClick(i) {
     const squares = this.state.squares.slice();
-    //let squares = _.cloneDeep(this.state.squares);
 
     if(this.state.sourceSelection === -1) {
       if(!squares[i] || squares[i].player !== this.state.player){
         this.setState({status: "Wrong selection. Choose " + this.state.turn + " pieces."});
       }
       else {
-        //const item = this.state.squares[i];
-        //console.log(item, i);
-        //console.log(squares[i], i);
-        //console.log(this.state.sourceSelection);
-
-        // console.log(squares[i].player);
-        // console.log(this.state.player);
-
         this.setState({
           sourceSelection: i,
           status: 'choose destination for selected piece'
@@ -41,12 +31,6 @@ export default class App extends React.Component {
     }
     
     else if(this.state.sourceSelection > -1) {
-      // console.log(i);
-      // console.log(this.state.squares[i]);
-      // console.log(this.state.sourceSelection);
-      // console.log(squares[this.state.sourceSelection]);
-      //if(squares[i].player === this.state.player);
-
       if(squares[i] && squares[i].player === this.state.player){
         this.setState({
           status: "choose destination for selected piece",
@@ -59,7 +43,6 @@ export default class App extends React.Component {
         const isMovePossible = squares[this.state.sourceSelection].isMovePossible(this.state.sourceSelection, i);
         //const srcToDestPath = squares[this.state.sourceSelection].getSrcToDestPath(this.state.sourceSelection, i);
 
-        //this.setState({sourceSelection: -1});
         if(isMovePossible) {
           squares[i] = squares[this.state.sourceSelection];
           squares[this.state.sourceSelection] = null;
@@ -82,22 +65,9 @@ export default class App extends React.Component {
             sourceSelection: -1,
           });
         }
-        
         //console.log(squares);
         //console.log(turn);
       }
-
-      // console.log(squares[i].player);
-      // console.log(this.state.player);
-
-
-      // const sourceIndex = 1;
-      // const destinationIndex = 17;
-
-      // squares[destinationIndex] = squares[sourceIndex];
-      // squares[sourceIndex] = null;
-      // this.setState({ squares: squares });
-      // console.log(squares);
     }
   }
 
