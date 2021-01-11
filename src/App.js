@@ -55,7 +55,7 @@ export default class App extends React.Component {
       }
 
       else {
-        const squares = this.state.squares.slice();
+        //const squares = this.state.squares.slice();
         const isMovePossible = squares[this.state.sourceSelection].isMovePossible(this.state.sourceSelection, i);
         //const srcToDestPath = squares[this.state.sourceSelection].getSrcToDestPath(this.state.sourceSelection, i);
 
