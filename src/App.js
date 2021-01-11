@@ -55,20 +55,33 @@ export default class App extends React.Component {
       }
 
       else {
+        const squares = this.state.squares.slice();
+        const isMovePossible = squares[this.state.sourceSelection].isMovePossible(this.state.sourceSelection, i);
+        //const srcToDestPath = squares[this.state.sourceSelection].getSrcToDestPath(this.state.sourceSelection, i);
+
         //this.setState({sourceSelection: -1});
-        squares[i] = squares[this.state.sourceSelection];
-        squares[this.state.sourceSelection] = null;
+        if(isMovePossible) {
+          squares[i] = squares[this.state.sourceSelection];
+          squares[this.state.sourceSelection] = null;
 
-        let turn = this.state.turn === 'white' ? 'black' : 'white';
-        let player = this.state.player === 1 ? 2 : 1;
+          let turn = this.state.turn === 'white' ? 'black' : 'white';
+          let player = this.state.player === 1 ? 2 : 1;
 
-        this.setState({ 
-          squares: squares,
-          turn: turn,
-          status: '',
-          player: player,
-          sourceSelection: -1
-        });
+          this.setState({ 
+            squares: squares,
+            turn: turn,
+            status: '',
+            player: player,
+            sourceSelection: -1
+          });
+        }
+
+        else {
+          this.setState({
+            status: "Wrong selection. Choose valid source and destination again.",
+            sourceSelection: -1,
+          });
+        }
         
         //console.log(squares);
         //console.log(turn);

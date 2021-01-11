@@ -12,4 +12,27 @@ export default class Pawn extends Piece {
     //   2: [8, 9, 10, 11, 12, 13, 14, 15]
     // }
   }
+
+  isMovePossible(src, dest) {
+    if(this.player === 1){
+      if (dest === src - 8) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+    else if(this.player === 2){
+      if (dest === src + 8) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+  }
+
+  // getSrcToDestPath(src, dest){
+  //   return [];
+  // }
 }
