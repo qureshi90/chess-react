@@ -13,23 +13,24 @@ export default class Pawn extends Piece {
     }
   }
 
-  isMovePossible(src, dest) {
+  isMovePossible(src, dest, isDestOccupied) {
     if(this.player === 1){
-      if ((dest === src - 8) || (dest === src - 16 && this.initialPositions[1].indexOf(src) !== -1)) {
+      if ((dest === src - 8 && !isDestOccupied) || (dest === src - 16 && this.initialPositions[1].indexOf(src) !== -1)) {
         return true;
       }
-      else {
-        return false;
+      else if(isDestOccupied && (dest === src - 9 || dest === src - 7)){
+        return true;
       }
     }
     else if(this.player === 2){
-      if ((dest === src + 8) || (dest === src + 16 && this.initialPositions[2].indexOf(src) !== -1)) {
+      if ((dest === src + 8 && !isDestOccupied) || (dest === src + 16 && this.initialPositions[2].indexOf(src) !== -1)) {
         return true;
       }
-      else {
-        return false;
+      else if(isDestOccupied && (dest === src + 9 || dest === src + 7)){
+        return true;
       }
     }
+    return false;
   }
 
   getSrcToDestPath(src, dest){

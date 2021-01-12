@@ -40,7 +40,8 @@ export default class App extends React.Component {
 
       else {
         //const squares = this.state.squares.slice();
-        const isMovePossible = squares[this.state.sourceSelection].isMovePossible(this.state.sourceSelection, i);
+        const isDestOccupied = squares[i] ? true : false;
+        const isMovePossible = squares[this.state.sourceSelection].isMovePossible(this.state.sourceSelection, i, isDestOccupied);
         const srcToDestPath = squares[this.state.sourceSelection].getSrcToDestPath(this.state.sourceSelection, i);
         const isMoveLegal = this.isMoveLegal(srcToDestPath);
 
@@ -51,7 +52,7 @@ export default class App extends React.Component {
           let turn = this.state.turn === 'white' ? 'black' : 'white';
           let player = this.state.player === 1 ? 2 : 1;
 
-          this.setState({ 
+          this.setState({
             squares: squares,
             turn: turn,
             status: '',
