@@ -41,9 +41,10 @@ export default class App extends React.Component {
       else {
         //const squares = this.state.squares.slice();
         const isMovePossible = squares[this.state.sourceSelection].isMovePossible(this.state.sourceSelection, i);
-        //const srcToDestPath = squares[this.state.sourceSelection].getSrcToDestPath(this.state.sourceSelection, i);
+        const srcToDestPath = squares[this.state.sourceSelection].getSrcToDestPath(this.state.sourceSelection, i);
+        const isMoveLegal = this.isMoveLegal(srcToDestPath);
 
-        if(isMovePossible) {
+        if(isMovePossible && isMoveLegal) {
           squares[i] = squares[this.state.sourceSelection];
           squares[this.state.sourceSelection] = null;
 
@@ -67,8 +68,19 @@ export default class App extends React.Component {
         }
         //console.log(squares);
         //console.log(turn);
+        console.log(srcToDestPath);
       }
     }
+  }
+
+  isMoveLegal(srcToDestPath){
+    let isLegal = true;
+    for(let i = 0; i < srcToDestPath.length; i++){
+      if(this.state.squares[srcToDestPath[i]] !== null){
+        isLegal = false;
+      }
+    }
+    return isLegal;
   }
 
   render() {

@@ -32,7 +32,13 @@ export default class Pawn extends Piece {
     }
   }
 
-  // getSrcToDestPath(src, dest){
-  //   return [];
-  // }
+  getSrcToDestPath(src, dest){
+    if(dest === src - 16){
+      return [src - 8];
+    }
+    else if(dest === src + 16){
+      return [src + 8];
+    }
+    return [];
+  }
 }

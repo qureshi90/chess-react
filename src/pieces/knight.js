@@ -20,4 +20,8 @@ export default class Knight extends Piece {
       src + 17 === dest
     );
   }
+
+  getSrcToDestPath(){
+    return [];
+  }
 }

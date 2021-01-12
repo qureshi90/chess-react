@@ -20,4 +20,8 @@ export default class King extends Piece {
       src - 1 === dest
     );
   }
+
+  getSrcToDestPath(src, dest){
+    return [];
+  }
 }
