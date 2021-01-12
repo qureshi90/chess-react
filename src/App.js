@@ -37,32 +37,27 @@ export default class App extends React.Component {
           sourceSelection: i,
         });
       }
-
       else {
-        //const squares = this.state.squares.slice();
         const isDestOccupied = squares[i] ? true : false;
         const isMovePossible = squares[this.state.sourceSelection].isMovePossible(this.state.sourceSelection, i, isDestOccupied);
         const srcToDestPath = squares[this.state.sourceSelection].getSrcToDestPath(this.state.sourceSelection, i);
         const isMoveLegal = this.isMoveLegal(srcToDestPath);
 
         if(isMovePossible && isMoveLegal) {
-          console.log(squares[i]);
-          console.log(this.state.player);
-          console.log(this.state.turn);
-
-          if( squares[i] === 'King' ) {
+          if( squares[i] && squares[i].constructor.name === 'King' ) {
+            squares[i] = squares[this.state.sourceSelection];
+            squares[this.state.sourceSelection] = null;
             this.setState({
-              status: this.state.turn + "won the game"
+              squares: squares,
+              status: this.state.turn + " won the game"
             })
             console.log('king captured');
           }
           else {
             squares[i] = squares[this.state.sourceSelection];
             squares[this.state.sourceSelection] = null;
-
             let turn = this.state.turn === 'white' ? 'black' : 'white';
             let player = this.state.player === 1 ? 2 : 1;
-
             this.setState({
               squares: squares,
               turn: turn,
@@ -72,16 +67,12 @@ export default class App extends React.Component {
             });
           }
         }
-
         else {
           this.setState({
             status: "Wrong selection. Choose valid source and destination again.",
             sourceSelection: -1,
           });
         }
-        //console.log(squares);
-        //console.log(turn);
-        //console.log(srcToDestPath);
       }
     }
   }
@@ -105,10 +96,10 @@ export default class App extends React.Component {
             onClick = {(i) => this.handleClick(i)}
           />
         </div>
-
         <div className="game-info">
           <h3>Turn</h3>
           <div id="player-turn-box" style={{backgroundColor: this.state.turn}}></div>
+          <h3>Status:</h3>
           <div className="game-status">{this.state.status}</div>
         </div>
       </div>
