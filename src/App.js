@@ -46,19 +46,31 @@ export default class App extends React.Component {
         const isMoveLegal = this.isMoveLegal(srcToDestPath);
 
         if(isMovePossible && isMoveLegal) {
-          squares[i] = squares[this.state.sourceSelection];
-          squares[this.state.sourceSelection] = null;
+          console.log(squares[i]);
+          console.log(this.state.player);
+          console.log(this.state.turn);
 
-          let turn = this.state.turn === 'white' ? 'black' : 'white';
-          let player = this.state.player === 1 ? 2 : 1;
+          if( squares[i] === 'King' ) {
+            this.setState({
+              status: this.state.turn + "won the game"
+            })
+            console.log('king captured');
+          }
+          else {
+            squares[i] = squares[this.state.sourceSelection];
+            squares[this.state.sourceSelection] = null;
 
-          this.setState({
-            squares: squares,
-            turn: turn,
-            status: '',
-            player: player,
-            sourceSelection: -1
-          });
+            let turn = this.state.turn === 'white' ? 'black' : 'white';
+            let player = this.state.player === 1 ? 2 : 1;
+
+            this.setState({
+              squares: squares,
+              turn: turn,
+              status: '',
+              player: player,
+              sourceSelection: -1
+            });
+          }
         }
 
         else {
@@ -69,7 +81,7 @@ export default class App extends React.Component {
         }
         //console.log(squares);
         //console.log(turn);
-        console.log(srcToDestPath);
+        //console.log(srcToDestPath);
       }
     }
   }
