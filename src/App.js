@@ -37,7 +37,7 @@ export default class App extends React.Component {
       if(squares[i] && squares[i].player === this.state.player){
         this.setState({
           status: "choose destination for selected piece",
-          sourceSelection: i,
+          sourceSelection: i
         });
       }
       else {
@@ -91,7 +91,7 @@ export default class App extends React.Component {
         else {
           this.setState({
             status: "Wrong selection. Choose valid source and destination again.",
-            sourceSelection: -1,
+            sourceSelection: -1
           });
         }
       }
@@ -125,8 +125,8 @@ export default class App extends React.Component {
           <h3>Fallen Soldiers:</h3>
           <div className="fallen-soldiers">
             <FallenSoldiers
-            whiteFallenSoldiers = {this.state.whiteFallenSoldiers}
-            blackFallenSoldiers = {this.state.blackFallenSoldiers}
+              whiteFallenSoldiers = {this.state.whiteFallenSoldiers}
+              blackFallenSoldiers = {this.state.blackFallenSoldiers}
             />
           </div>
         </div>
