@@ -54,7 +54,12 @@ export default class App extends React.Component {
             squares[this.state.sourceSelection] = null;
             window.confirm(this.state.turn + ' won the game');
             this.setState({
-              squares: squares,
+              squares: initialiseChessBoard(),
+              player: 1,
+              sourceSelection: -1,
+              turn: 'white',
+              whiteFallenSoldiers: [],
+              blackFallenSoldiers: [],
               status: this.state.turn + " won the game"
             })
             console.log('king captured and ' + this.state.turn + ' won the game');
