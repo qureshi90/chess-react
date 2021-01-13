@@ -52,11 +52,12 @@ export default class App extends React.Component {
           if( squares[i] && squares[i].constructor.name === 'King' ) {
             squares[i] = squares[this.state.sourceSelection];
             squares[this.state.sourceSelection] = null;
+            window.confirm(this.state.turn + ' won the game');
             this.setState({
               squares: squares,
               status: this.state.turn + " won the game"
             })
-            console.log('king captured');
+            console.log('king captured and ' + this.state.turn + ' won the game');
           }
           else {
             if(squares[i] !== null){
