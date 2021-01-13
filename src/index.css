@@ -37,10 +37,31 @@ body {
 }
 
 .game-info {
-  margin-left: 20px;
+  margin: 0px 10px;
   width: 150px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .game-status {
   width: 140px;
+  height: 50px;
+  text-align: center;
+}
+
+h3 {
+  margin-bottom: 5px;
+}
+
+.fallen-soldiers {
+  width: 100px;
+  height: 100px;
+}
+
+.board-row {
+  height: 50px;
+  overflow: hidden;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.css';
 import Board from './components/board.js';
+import FallenSoldiers from './components/fallen-soldiers.js';
 import initialiseChessBoard from './helpers/board-initializer.js';
 
 export default class App extends React.Component {
@@ -11,7 +12,9 @@ export default class App extends React.Component {
       player: 1,
       sourceSelection: -1,
       turn: 'white',
-      status: ''
+      status: '',
+      whiteFallenSoldiers: [],
+      blackFallenSoldiers: []
     }
   }
 
@@ -42,6 +45,8 @@ export default class App extends React.Component {
         const isMovePossible = squares[this.state.sourceSelection].isMovePossible(this.state.sourceSelection, i, isDestOccupied);
         const srcToDestPath = squares[this.state.sourceSelection].getSrcToDestPath(this.state.sourceSelection, i);
         const isMoveLegal = this.isMoveLegal(srcToDestPath);
+        const whiteFallenSoldiers = this.state.whiteFallenSoldiers.slice();
+        const blackFallenSoldiers = this.state.blackFallenSoldiers.slice();
 
         if(isMovePossible && isMoveLegal) {
           if( squares[i] && squares[i].constructor.name === 'King' ) {
@@ -54,6 +59,14 @@ export default class App extends React.Component {
             console.log('king captured');
           }
           else {
+            if(squares[i] !== null){
+              if(squares[i].player === 1){
+                whiteFallenSoldiers.unshift(squares[i]);
+              }
+              else{
+                blackFallenSoldiers.unshift(squares[i]);
+              }
+            }
             squares[i] = squares[this.state.sourceSelection];
             squares[this.state.sourceSelection] = null;
             let turn = this.state.turn === 'white' ? 'black' : 'white';
@@ -63,7 +76,9 @@ export default class App extends React.Component {
               turn: turn,
               status: '',
               player: player,
-              sourceSelection: -1
+              sourceSelection: -1,
+              whiteFallenSoldiers: whiteFallenSoldiers,
+              blackFallenSoldiers: blackFallenSoldiers
             });
           }
         }
@@ -97,10 +112,17 @@ export default class App extends React.Component {
           />
         </div>
         <div className="game-info">
-          <h3>Turn</h3>
+          <h3>Turn:</h3>
           <div id="player-turn-box" style={{backgroundColor: this.state.turn}}></div>
           <h3>Status:</h3>
           <div className="game-status">{this.state.status}</div>
+          <h3>Fallen Soldiers:</h3>
+          <div className="fallen-soldiers">
+            <FallenSoldiers
+            whiteFallenSoldiers = {this.state.whiteFallenSoldiers}
+            blackFallenSoldiers = {this.state.blackFallenSoldiers}
+            />
+          </div>
         </div>
       </div>
     );
