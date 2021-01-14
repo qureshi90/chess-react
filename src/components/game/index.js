@@ -1,7 +1,7 @@
 import React from 'react';
 import '../style.scss';
-import Board from '../board/board.js';
-import FallenSoldiers from '../fallen-soldiers/fallen-soldiers.js';
+import Board from '../board/index.js';
+import FallenSoldiers from '../fallen-soldiers/index.js';
 import initialiseChessBoard from '../../helpers/board-initializer.js';
 
 export default class Game extends React.Component {
