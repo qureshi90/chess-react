@@ -1,9 +1,11 @@
-import Bishop from '../pieces/bishop';
-import King from '../pieces/king';
-import Knight from '../pieces/knight';
-import Pawn from '../pieces/pawn';
-import Queen from '../pieces/queen';
-import Rook from '../pieces/rook';
+// import Bishop from '../pieces/components/bishop';
+// import King from '../pieces/components/king';
+// import Knight from '../pieces/components/knight';
+// import Pawn from '../pieces/components/pawn';
+// import Queen from '../pieces/components/queen';
+// import Rook from '../pieces/components/rook';
+
+import { Bishop, Queen, King, Knight, Pawn, Rook } from '../pieces';
 
 export default function initialiseChessBoard(){
   const squares = Array(64).fill(null);
