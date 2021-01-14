@@ -1,5 +1,5 @@
 import React from 'react';
-import '../style.scss';
+import './style.scss';
 import Board from '../board/index.js';
 import FallenSoldiers from '../fallen-soldiers/index.js';
 import initialiseChessBoard from '../../helpers/board-initializer.js';
@@ -14,7 +14,9 @@ export default class Game extends React.Component {
       turn: 'white',
       status: '',
       whiteFallenSoldiers: [],
-      blackFallenSoldiers: []
+      blackFallenSoldiers: [],
+      blackCounter: 0,
+      whiteCounter: 0
     }
   }
 
@@ -47,12 +49,20 @@ export default class Game extends React.Component {
         const isMoveLegal = this.isMoveLegal(srcToDestPath);
         const whiteFallenSoldiers = this.state.whiteFallenSoldiers.slice();
         const blackFallenSoldiers = this.state.blackFallenSoldiers.slice();
+        const whiteCounter = this.state.whiteCounter;
+        const blackCounter = this.state.blackCounter;
 
         if(isMovePossible && isMoveLegal) {
           if( squares[i] && squares[i].constructor.name === 'King' ) {
             squares[i] = squares[this.state.sourceSelection];
             squares[this.state.sourceSelection] = null;
             window.confirm(this.state.turn + ' won the game');
+            if(this.state.turn === 'white'){
+              this.setState({whiteCounter: whiteCounter + 1});
+            }
+            else {
+              this.setState({blackCounter: blackCounter + 1});
+            }
             this.setState({
               squares: initialiseChessBoard(),
               player: 1,
@@ -122,13 +132,20 @@ export default class Game extends React.Component {
           <div id="player-turn-box" style={{backgroundColor: this.state.turn}}></div>
           <h3>Status:</h3>
           <div className="game-status">{this.state.status}</div>
-          <h3>Fallen Soldiers:</h3>
-          <div className="fallen-soldiers">
-            <FallenSoldiers
-              whiteFallenSoldiers = {this.state.whiteFallenSoldiers}
-              blackFallenSoldiers = {this.state.blackFallenSoldiers}
-            />
+          <h3>Win Counter:</h3>
+          <div className="win-counter">
+            <div className="white-card">
+              {this.state.whiteCounter}
+            </div> -
+            <div className="black-card">
+              {this.state.blackCounter}
+            </div>
           </div>
+          <h3>Fallen Soldiers:</h3>
+          <FallenSoldiers
+            whiteFallenSoldiers = {this.state.whiteFallenSoldiers}
+            blackFallenSoldiers = {this.state.blackFallenSoldiers}
+          />
         </div>
       </div>
     );

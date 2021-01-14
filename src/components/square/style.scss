@@ -1,0 +1,19 @@
+.square {
+  background: transparent;
+  border: 1px solid transparent;
+  height: 90px;
+  padding: 0;
+  width: 90px;
+}
+
+.square:focus {
+  outline: none;
+}
+
+.dark-square{
+  background-color: #769656;
+}
+
+.light-square{
+  background-color: #EEEED2;
+}

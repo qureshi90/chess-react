@@ -1,0 +1,60 @@
+.game {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 20px;
+}
+
+.game-board {
+  display: flex;
+  flex-direction: row;
+  border: 10px solid #966F33;
+  border-radius: 5px;
+}
+
+.game-info {
+  margin: 0px 10px;
+  width: 200px;
+  border-radius: 5px;
+  background-color: #8a7777;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-status {
+  width: 140px;
+  height: 50px;
+  text-align: center;
+}
+
+#player-turn-box {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #000;
+}
+
+h3 {
+  margin: 10px;
+  font-size: 22px;
+}
+
+.win-counter {
+  width: 180px;
+  font-size: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.white-card {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0px 10px;
+  border-radius: 10px;
+}
+
+.black-card {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0px 10px;
+  border-radius: 10px;
+}

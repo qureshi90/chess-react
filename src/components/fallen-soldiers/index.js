@@ -1,5 +1,5 @@
 import React from 'react';
-import '../style.scss';
+import './style.scss';
 import Square from '../square/index.js';
 
 export default class FallenSoldiers extends React.Component {
@@ -12,14 +12,14 @@ export default class FallenSoldiers extends React.Component {
 
   render() {
     return (
-      <>
-        <div className="board-row">
+      <div className="fallen-soldiers">
+        <div className="pieces">
           {this.props.whiteFallenSoldiers.map((ws, index) => this.renderSquare(ws, index))}
         </div>
-        <div className="board-row">
+        <div className="pieces">
           {this.props.blackFallenSoldiers.map((bs, index) => this.renderSquare(bs, index))}
         </div>
-      </>
+      </div>
     );
   }
 }
